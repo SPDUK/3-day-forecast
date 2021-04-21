@@ -89,6 +89,7 @@ function CitySearch() {
           value={searchValue}
           placeholder="Search"
           required
+          autoComplete="off"
         />
         {error ? <div className={errorText}>{error}</div> : null}
 
