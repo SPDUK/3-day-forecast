@@ -23,14 +23,6 @@ const WeatherProvider = ({ children }) => {
       // do nothing if already showing the data
       if (currentSearch.name === city) return;
 
-      // add current search to previously searched when making a new search - ignore if don't have one yet on start
-      if (currentSearch.name) {
-        setPreviousSearches((prevSearches) => [
-          currentSearch,
-          ...previousSearches,
-        ]);
-      }
-
       // no need to make API request again if we have the data already
       if (searchCache[city]) {
         return setCurrentSearch(searchCache[city]);
@@ -53,6 +45,11 @@ const WeatherProvider = ({ children }) => {
         name,
         forecast: nextThreeDays,
       };
+
+      // add current search to previously searched when making a new search - ignore if don't have one yet on start
+      if (currentSearch.name) {
+        setPreviousSearches((prevSearches) => [currentSearch, ...prevSearches]);
+      }
 
       setCurrentSearch(newWeatherData);
       setSearchCache((prevCache) => ({ ...prevCache, [name]: newWeatherData }));

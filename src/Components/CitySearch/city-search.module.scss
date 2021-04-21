@@ -13,7 +13,7 @@
 }
 
 .input, .form {
-  max-width: 400px;
+  max-width: var(--container-width);
   width: 100%;
 }
 

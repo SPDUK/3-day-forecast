@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useWeatherContext } from '../../contexts/WeatherContext';
-import { onlyLettersAndSpacesRegex } from '../../utils';
+import { capitalizeEachWord, onlyLettersAndSpacesRegex } from '../../utils';
 import CityWeatherList from '../CityWeatherList/CityWeatherList';
 
 import {
@@ -21,9 +21,9 @@ function CitySearch() {
     event.preventDefault();
 
     // filter out anything not alphabetical -> replace searchValue with it to display back to user
-    const sanitizedSearch = searchValue
-      .replace(onlyLettersAndSpacesRegex, '')
-      .trim();
+    const sanitizedSearch = capitalizeEachWord(
+      searchValue.replace(onlyLettersAndSpacesRegex, '').trim()
+    );
 
     if (sanitizedSearch !== searchValue) {
       setSearchValue(sanitizedSearch);
@@ -53,9 +53,7 @@ function CitySearch() {
           required
         />
         {error ? <div className={errorText}>{error}</div> : null}
-        {currentSearch.name && !error && (
-          <CityWeatherList forecastData={currentSearch} />
-        )}
+        {currentSearch.name && <CityWeatherList forecastData={currentSearch} />}
       </form>
     </div>
   );

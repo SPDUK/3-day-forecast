@@ -9,12 +9,14 @@
   --box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   --box-shadow-large: 0 1rem 3rem rgba(0,0,0,.175);
 
+  // container for content in center
+  --container-width: 400px;
+
   // images
   --weather-image: url('https://res.cloudinary.com/dmjolhdaq/image/upload/v1619024759/three-day-forecast/cold.jpg');
 
 
   // blurry input/nav 
-
   --blurry-background: rgba(34,34,34, 0.35);
   --blurry-backdrop-filter: saturate(180%) blur(20px);
 }
