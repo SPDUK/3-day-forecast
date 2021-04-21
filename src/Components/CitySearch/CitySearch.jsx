@@ -1,0 +1,63 @@
+import React, { useState, useEffect } from 'react';
+import { useWeatherContext } from '../../contexts/WeatherContext';
+import { onlyLettersAndSpacesRegex } from '../../utils';
+
+import {
+  input,
+  container,
+  form,
+  title,
+  inputError,
+  errorText,
+} from './city-search.module.scss';
+
+function CitySearch() {
+  const [searchValue, setSearchValue] = useState('');
+
+  const { loading, error, searchForCity } = useWeatherContext();
+
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+
+    // filter out anything not alphabetical -> replace searchValue with it to display back to user
+    const sanitizedSearch = searchValue
+      .replace(onlyLettersAndSpacesRegex, '')
+      .trim();
+
+    if (sanitizedSearch !== searchValue) {
+      setSearchValue(sanitizedSearch);
+    }
+
+    // do nothing if no valid search
+    if (!sanitizedSearch) return null;
+
+    // search API using the city state
+
+    searchForCity(sanitizedSearch);
+  }
+
+  function handleSearchChange({ target: { value } }) {
+    console.log({ value, searchValue });
+    setSearchValue(value);
+  }
+
+  return (
+    <div className={container}>
+      <h1 className={title}>Search for a city</h1>
+      <form className={form} onSubmit={handleSearchSubmit}>
+        <input
+          disabled={loading}
+          className={`${input} ${error ? inputError : ''}`}
+          type="text"
+          onChange={handleSearchChange}
+          value={searchValue}
+          placeholder="Search"
+          required
+        />
+        {error ? <div className={errorText}>{error}</div> : null}
+      </form>
+    </div>
+  );
+}
+
+export default CitySearch;

@@ -1,6 +1,21 @@
 :root {
+  // colours
   --white: #fafafa;
   --black: #222222;
+  --light-gray: #919191;
+  --error: rgb(243, 61, 61);
+
   --text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  --box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  --box-shadow-large: 0 1rem 3rem rgba(0,0,0,.175);
+
+  // images
+  --raining-image: url(https://images.pexels.com/photos/2028885/pexels-photo-2028885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+
+
+  // blurry input/nav 
+
+  --blurry-background: rgba(34,34,34, 0.35);
+  --blurry-backdrop-filter: saturate(180%) blur(20px);
 }
 
