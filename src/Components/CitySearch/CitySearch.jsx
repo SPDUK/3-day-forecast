@@ -80,6 +80,7 @@ function CitySearch() {
       <h1 className={title}>Search for a city</h1>
       <form className={form} onSubmit={handleSearchSubmit}>
         <input
+          id="citySearchInput"
           disabled={loading}
           ref={inputRef}
           className={`${input} ${error ? inputError : ''}`}
@@ -94,6 +95,7 @@ function CitySearch() {
         <div className={suggestionContainer}>
           {suggestions.map((suggestion) => (
             <button
+              name={suggestion}
               type="button"
               className={suggestionButton}
               onClick={() => selectSuggestion(suggestion)}
