@@ -1,0 +1,25 @@
+{
+  "stylelint.syntax": "scss",
+  "editor.formatOnSave": false,
+  // turn formatting off for JS and JSX, we will do this via eslint
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  // tell the ESLint & StyleLint plugin to run on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+  },
+  // disable prettier for .js, .jsx,  .css,  .scss files (only works on .html)
+  "prettier.disableLanguages": ["javascript", "javascriptreact", "css", "scss"],
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+  },
+  // show eslint icon at bottom toolbar
+  "eslint.alwaysShowStatus": true,
+}
