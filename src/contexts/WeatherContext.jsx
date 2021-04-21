@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, createRef } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -64,6 +64,35 @@ const WeatherProvider = ({ children }) => {
       setLoading(false);
     }
   }
+
+  // update the background any time the current search changes
+  // - if it is over 15c show a warm image, otherwise show cold one
+  useEffect(() => {
+    if (!currentSearch.forecast) return;
+    const baseImageUrl =
+      'https://res.cloudinary.com/dmjolhdaq/image/upload/v1619024759/three-day-forecast';
+
+    const cssRoot = document.querySelector(':root');
+
+    const todaysWeather = currentSearch.forecast[0].main.temp;
+
+    const isWarm = todaysWeather > 15;
+
+    const currentImage = getComputedStyle(cssRoot).getPropertyValue(
+      '--weather-image'
+    );
+
+    const imageHref = isWarm ? 'warm' : 'cold';
+
+    // make sure we always toggle between the original or secondary image to make it slightly more fun
+    // eslint-disable-next-line
+    const isAltImage = currentImage.slice(-10).includes('2');
+    const imageExtension = isAltImage ? '.jpg' : '-2.jpg';
+
+    const newWeatherImageHref = `${baseImageUrl}/${imageHref}${imageExtension}`;
+
+    cssRoot.style.setProperty('--weather-image', `url(${newWeatherImageHref})`);
+  }, [currentSearch]);
 
   const value = {
     loading,

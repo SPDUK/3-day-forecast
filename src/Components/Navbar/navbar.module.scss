@@ -9,6 +9,7 @@
   padding: 0 30px;
   background-color: var( --blurry-background);
   backdrop-filter: var(--blurry-backdrop-filter);
+  z-index: 1000;
 
 
   @media (min-width: 768px) {
