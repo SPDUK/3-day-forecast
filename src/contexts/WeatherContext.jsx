@@ -36,10 +36,8 @@ const WeatherProvider = ({ children }) => {
       const { list } = data;
       const { name } = data.city;
 
-      console.log(data);
       // returns array of 40 length - 5 days = every 8 entries is 24 hours = we need 0, 7, 15
       const nextThreeDays = [list[0], list[7], list[15]];
-      console.log({ nextThreeDays });
 
       const newWeatherData = {
         name,
