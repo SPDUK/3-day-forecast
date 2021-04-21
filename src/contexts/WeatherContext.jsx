@@ -30,7 +30,7 @@ const WeatherProvider = ({ children }) => {
 
       const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-      const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},,GB&units=metric&appid=${apiKey}`;
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},,GB&units=metric&appid=${apiKey}`;
 
       const { data } = await axios.get(url);
       const { list } = data;
