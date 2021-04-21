@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWeatherContext } from '../../contexts/WeatherContext';
 import { onlyLettersAndSpacesRegex } from '../../utils';
+import CityWeatherList from '../CityWeatherList/CityWeatherList';
 
 import {
   input,
@@ -14,7 +15,7 @@ import {
 function CitySearch() {
   const [searchValue, setSearchValue] = useState('');
 
-  const { loading, error, searchForCity } = useWeatherContext();
+  const { loading, error, searchForCity, currentSearch } = useWeatherContext();
 
   function handleSearchSubmit(event) {
     event.preventDefault();
@@ -31,13 +32,10 @@ function CitySearch() {
     // do nothing if no valid search
     if (!sanitizedSearch) return null;
 
-    // search API using the city state
-
     searchForCity(sanitizedSearch);
   }
 
   function handleSearchChange({ target: { value } }) {
-    console.log({ value, searchValue });
     setSearchValue(value);
   }
 
@@ -55,6 +53,9 @@ function CitySearch() {
           required
         />
         {error ? <div className={errorText}>{error}</div> : null}
+        {currentSearch.name && !error && (
+          <CityWeatherList forecastData={currentSearch} />
+        )}
       </form>
     </div>
   );

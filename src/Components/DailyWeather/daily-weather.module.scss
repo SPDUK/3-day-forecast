@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: var(--white);
+}
+
+.image {
+  width: 40px;
+  height: 40px;
+  opacity: 0.9;
+}
+
+.tempText {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: bold;
+}
