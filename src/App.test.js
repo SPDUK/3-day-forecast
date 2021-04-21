@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { onlyLettersAndSpacesRegex } from './utils';
+import { onlyLettersAndSpacesRegex, capitalizeEachWord } from './utils';
 
 // test('renders learn react link', () => {
 //   render(<App />);
@@ -23,4 +23,11 @@ test('onlyLettersAndSpacesRegex works correctly', () => {
   expect(
     invalidTestCases.filter((search) => onlyLettersAndSpacesRegex.test(search))
   ).toHaveLength(0);
+});
+
+test('capitalizeEachWordEachWord utility fn works correctly', () => {
+  expect(capitalizeEachWord('tokyo')).toBe('Tokyo');
+  expect(capitalizeEachWord('LoNDoN')).toBe('London');
+  expect(capitalizeEachWord('NeW YOrK')).toBe('New York');
+  expect(capitalizeEachWord('New York')).toBe('New York');
 });
