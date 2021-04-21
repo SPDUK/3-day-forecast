@@ -1,8 +1,12 @@
+import Navbar from './Components/Navbar/Navbar';
+import './styles/index.scss';
+
 function App() {
   return (
-    <div className="App">
+    <>
+      <Navbar />
       <header className="App-header">Forecast</header>
-    </div>
+    </>
   );
 }
 
